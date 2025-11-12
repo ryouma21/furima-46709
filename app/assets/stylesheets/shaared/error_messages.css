@@ -1,0 +1,20 @@
+.error-alert {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.error-message {
+  font-size: 1.3vw;
+  list-style: circle;
+  color: rgb(182, 48, 0);
+}
+
+.indispensable {
+  background-color: #ff0000; /* 赤背景 */
+  color: #fff;               /* 白文字 */
+  font-size: 12px;           /* 小さめ文字 */
+  padding: 2px 6px;          /* 文字の周りに余白 */
+  border-radius: 4px;        /* 少し角を丸く */
+  margin-left: 4px;          /* ラベルと文字の間にすき間 */
+}
