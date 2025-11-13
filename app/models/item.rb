@@ -16,11 +16,13 @@ class Item < ApplicationRecord
    # 画像
   validates :image,         presence: true
  # ActiveHashの必須チェック（---=1を選ばせない）
-  validates :category_id,     numericality: { other_than: 1 }
-  validates :condition_id,    numericality: { other_than: 1 }
-  validates :shipping_fee_id, numericality: { other_than: 1 }
-  validates :prefecture_id,   numericality: { other_than: 1 }
-  validates :shipping_day_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id,     numericality:
+    validates :condition_id,    numericality:
+    validates :shipping_fee_id, numericality:
+    validates :prefecture_id,   numericality:
+    validates :shipping_day_id, numericality:
+  end  
    # 価格の制限
   validates :price,
   numericality: { 
