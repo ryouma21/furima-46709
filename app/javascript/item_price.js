@@ -2,8 +2,8 @@ const price = () => {
   const priceInput = document.getElementById("item-price");
   if (!priceInput) return;
   priceInput.addEventListener("input", () => {
-    const inputValue = priceInput.value; // 入力された値を取得
-    console.log(inputValue);             // 画面に出して確認！
+    const inputValue = priceInput.value;
+    console.log(inputValue);
 
     // 表示する場所の要素を取得
     const addTaxDom = document.getElementById("add-tax-price");
