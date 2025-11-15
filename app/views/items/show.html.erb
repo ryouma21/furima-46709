@@ -25,7 +25,7 @@
 
   <% if user_signed_in? %>
     <% if current_user.id == @item.user.id %>
-      <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+      <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
 
