@@ -27,7 +27,7 @@
     <% if current_user.id == @item.user.id %>
       <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
       <p class="or-text">or</p>
-      <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
+      <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
 
     <% else %>
       <%# 商品が売れていない場合はこちらを表示しましょう %>
