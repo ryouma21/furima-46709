@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   require 'payjp'
   before_action :authenticate_user!
   before_action :set_item
+  before_action :redirect_if_sold_out, only: [:index, :create]
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -44,5 +45,10 @@ class OrdersController < ApplicationController
       card: purchase_params[:token],       # トークン
       currency: 'jpy'
     )
+  end
+
+  def redirect_if_sold_out
+    # もし購入履歴があれば売却済み
+    redirect_to root_path if @item.purchase.present?
   end
 end

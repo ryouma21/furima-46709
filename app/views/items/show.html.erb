@@ -30,11 +30,11 @@
       <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
 
     <% else %>
-      <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <%= link_to "購入画面に進む", item_orders_path(@item.id) ,data: { turbo: false }, class:"item-red-btn"%>
+      <% if @item.purchase.blank? %>
+        <%= link_to "購入画面に進む", item_orders_path(@item.id) ,data: { turbo: false }, class:"item-red-btn"%>
+      <% end %>
     <% end %>
   <% end %>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
 
     <div class="item-explain-box">
       <span><%= @item.description %></span>
