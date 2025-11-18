@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
-  
+
   def index
     @purchase_address = PurchaseAddress.new
   end
