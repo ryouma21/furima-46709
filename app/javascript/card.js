@@ -3,16 +3,25 @@ document.addEventListener("turbo:load", () => {
   const form = document.getElementById("charge-form");
   if (!form) return;
 
-  // フォーム送信時にイベント発火
   form.addEventListener("submit", (e) => {
-    e.preventDefault();  // デフォルトの送信を止める
-    console.log("購入ボタンを押しました！（イベント発火OK）");
-    const cardNumber = document.getElementById("number-form");
-    const cardExpiry = document.getElementById("expiry-form");
-    const cardCVC = document.getElementById("cvc-form");
+    e.preventDefault();
+    console.log("イベント発火OK");
 
-    console.log(cardNumber);
-    console.log(cardExpiry);
-    console.log(cardCVC);
+  // ③ PAY.JP 初期化 ---------------------------------------------------
+    const publicKey = process.env.PAYJP_PUBLIC_KEY;
+    const payjp = Payjp(publicKey);
+    const elements = payjp.elements();
+
+    // ④ カード入力フォームを生成 -----------------------------------------
+    const numberElement = elements.create("cardNumber");
+    const expiryElement = elements.create("cardExpiry");
+    const cvcElement = elements.create("cardCvc");
+
+    // ⑤ 作成したフォームをビューのdivに埋め込む ---------------------------
+    numberElement.mount("#number-form");
+    expiryElement.mount("#expiry-form");
+    cvcElement.mount("#cvc-form");
+
+    console.log("カード入力パーツの生成OK！");
   });
 });
