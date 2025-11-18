@@ -1,27 +1,54 @@
-document.addEventListener("turbo:load", () => {
-  // 購入フォームがないページでは何もしない
+const pay = () => {
   const form = document.getElementById("charge-form");
   if (!form) return;
 
+  // ① 公開鍵を gon から取得
+  const publicKey = gon.public_key;
+  const payjp = Payjp(publicKey);
+  const elements = payjp.elements();
+
+  // ② カード入力部品を作成
+  const numberElement = elements.create("cardNumber");
+  const expiryElement = elements.create("cardExpiry");
+  const cvcElement = elements.create("cardCvc");
+
+  // ③ ビュー上のdivと置き換える（mount）
+  numberElement.mount("#number-form");
+  expiryElement.mount("#expiry-form");
+  cvcElement.mount("#cvc-form");
+
+  // ④ フォーム送信イベント
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("イベント発火OK");
 
-  // ③ PAY.JP 初期化 ---------------------------------------------------
-    const publicKey = process.env.PAYJP_PUBLIC_KEY;
-    const payjp = Payjp(publicKey);
-    const elements = payjp.elements();
+    // ⑤ トークンを作成
+    payjp.createToken(numberElement).then(function(response) {
+      console.log(response); // 開発時必ずチェック
 
-    // ④ カード入力フォームを生成 -----------------------------------------
-    const numberElement = elements.create("cardNumber");
-    const expiryElement = elements.create("cardExpiry");
-    const cvcElement = elements.create("cardCvc");
+      if (response.error) {
+        alert("カード情報に誤りがあります");
+        return;
+      }
 
-    // ⑤ 作成したフォームをビューのdivに埋め込む ---------------------------
-    numberElement.mount("#number-form");
-    expiryElement.mount("#expiry-form");
-    cvcElement.mount("#cvc-form");
+      // ⑥ token を hidden フィールドとしてフォームに追加
+      const token = response.id;
+      const tokenInput = document.createElement("input");
+      tokenInput.setAttribute("type", "hidden");
+      tokenInput.setAttribute("name", "token");
+      tokenInput.setAttribute("value", token);
+      form.appendChild(tokenInput);
 
-    console.log("カード入力パーツの生成OK！");
+      // ⑦ セキュリティのためフォームから実カード情報を削除
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+
+      // ⑧ サーバーへ送信
+      form.submit();
+    });
   });
-});
+};
+
+window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);
