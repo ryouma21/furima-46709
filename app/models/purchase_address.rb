@@ -3,7 +3,7 @@ class PurchaseAddress
 
   attr_accessor :user_id, :item_id,
                 :postal_code, :prefecture_id, :city, :house_number,
-                :building_name, :phone_number
+                :building_name, :phone_number, :token
 
    # ▼ バリデーション
   with_options presence: true do
@@ -13,6 +13,7 @@ class PurchaseAddress
     validates :phone_number
     validates :user_id
     validates :item_id
+    validates :token
   end
 
   # 郵便番号（3桁-4桁）
