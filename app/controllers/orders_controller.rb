@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @purchase_address = PurchaseAddress.new
   end
 
@@ -12,6 +13,7 @@ class OrdersController < ApplicationController
       @purchase_address.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
@@ -29,6 +31,7 @@ class OrdersController < ApplicationController
     ).merge(
       user_id: current_user.id,
       item_id: params[:item_id]
+      token: params[:token]
     )
   end
 end
