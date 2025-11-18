@@ -26,10 +26,7 @@ const pay = () => {
     payjp.createToken(numberElement).then(function(response) {
       console.log(response); // 開発時必ずチェック
 
-      if (response.error) {
-        alert("カード情報に誤りがあります");
-        return;
-      }
+    
 
       // ⑥ token を hidden フィールドとしてフォームに追加
       const token = response.id;
