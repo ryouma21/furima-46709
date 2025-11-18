@@ -6,33 +6,32 @@ class PurchaseAddress
                 :building_name, :phone_number, :token
 
    # ▼ バリデーション
-  with_options presence: true do
-    validates :postal_code
-    validates :city
-    validates :house_number
-    validates :phone_number
-    validates :user_id
-    validates :item_id
-    validates :token
-  end
+  
+    validates :token, presence: true                      # ① Token
+    validates :postal_code, presence: true                # ② 郵便番号
 
-  # 郵便番号（3桁-4桁）
+    # 郵便番号（3桁-4桁）
    validates :postal_code, format: { 
     with: /\A\d{3}-\d{4}\z/,
     message: "is invalid. Enter it as follows (e.g. 123-4567)" 
-  }
+    }
 
-  # 都道府県（---=1 を選ばせない）
-  validates :prefecture_id, numericality: { 
-    other_than: 1, 
-    message: "can't be blank" 
-  }
+    # 都道府県（---=1 を選ばせない）
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  
 
-  # 電話番号（10〜11桁の数字のみ）
-  validates :phone_number, format: { 
-    with: /\A\d{10,11}\z/,
-    message: "is invalid. Input only number"
-  }
+    validates :city, presence: true                   # ④ 市区町村
+    validates :house_number, presence: true           # ⑤ 番地
+    validates :phone_number, presence: true           # ⑥ 電話番号
+    validates :user_id, presence: true                # ⑦ user_id
+    validates :item_id, presence: true                # ⑧ item_id
+
+    # 電話番号（10〜11桁）
+    validates :phone_number, length: { minimum: 10, message: "is too short" }
+    validates :phone_number, format: {
+      with: /\A\d{10,11}\z/,
+      message: "is invalid. Input only number"
+    }
 
   # 保存処理
   def save
