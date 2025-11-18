@@ -31,7 +31,7 @@
 
     <% else %>
       <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <%= link_to "購入画面に進む", "#" ,data: { turbo: false }, class:"item-red-btn"%>
+      <%= link_to "購入画面に進む", item_orders_path(@item.id) ,data: { turbo: false }, class:"item-red-btn"%>
     <% end %>
   <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
