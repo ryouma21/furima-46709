@@ -5,6 +5,34 @@ class PurchaseAddress
                 :postal_code, :prefecture_id, :city, :house_number,
                 :building_name, :phone_number
 
+   # ▼ バリデーション
+  with_options presence: true do
+    validates :postal_code
+    validates :city
+    validates :house_number
+    validates :phone_number
+    validates :user_id
+    validates :item_id
+  end
+
+  # 郵便番号（3桁-4桁）
+   validates :postal_code, format: { 
+    with: /\A\d{3}-\d{4}\z/,
+    message: "is invalid. Enter it as follows (e.g. 123-4567)" 
+  }
+
+  # 都道府県（---=1 を選ばせない）
+  validates :prefecture_id, numericality: { 
+    other_than: 1, 
+    message: "can't be blank" 
+  }
+
+  # 電話番号（10〜11桁の数字のみ）
+  validates :phone_number, format: { 
+    with: /\A\d{10,11}\z/,
+    message: "is invalid. Input only number"
+  }
+
   # 保存処理
   def save
     # purchase の保存
