@@ -62,5 +62,4 @@ class ItemsController < ApplicationController
   def move_to_index_if_sold_out
     redirect_to root_path if @item.purchase.present?
   end
-
 end

@@ -31,7 +31,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'postal_codeが「3桁-4桁」でないと保存できない' do
         @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
 
       it 'prefecture_idが1だと保存できない' do
@@ -61,19 +61,19 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'phone_numberが10桁未満では保存できない' do
         @purchase_address.phone_number = '123456789'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
 
       it 'phone_numberが12桁以上では保存できない' do
         @purchase_address.phone_number = '123456789012'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
 
       it 'phone_numberにハイフンが含まれていると保存できない' do
         @purchase_address.phone_number = '090-1234-5678'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
 
       it 'user_idが空だと保存できない' do
@@ -88,7 +88,7 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
       end
 
-       it 'tokenが空だと保存できない' do
+      it 'tokenが空だと保存できない' do
         @purchase_address.token = ''
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Token can't be blank")

@@ -5,18 +5,18 @@ class OrdersController < ApplicationController
   before_action :redirect_if_sold_out, only: [:index, :create]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @purchase_address = PurchaseAddress.new
   end
 
   def create
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
-      pay_item  
+      pay_item
       @purchase_address.save
       redirect_to root_path
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
   end
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # ← 秘密鍵
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # ← 秘密鍵
     Payjp::Charge.create(
       amount: @item.price,                 # 商品の価格
       card: purchase_params[:token],       # トークン
