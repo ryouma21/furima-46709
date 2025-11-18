@@ -48,7 +48,16 @@ class OrdersController < ApplicationController
   end
 
   def redirect_if_sold_out
-    # もし購入履歴があれば売却済み
-    redirect_to root_path if @item.purchase.present?
+    # 出品者は購入できない
+    if current_user.id == @item.user_id
+      redirect_to root_path
+      return
+    end
+
+    # 売却済みも購入できない
+    if @item.purchase.present?
+      redirect_to root_path
+      return
+    end
   end
 end
