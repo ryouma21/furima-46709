@@ -20,11 +20,9 @@ const pay = () => {
   // ④ フォーム送信イベント
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("イベント発火OK");
 
     // ⑤ トークンを作成
     payjp.createToken(numberElement).then(function(response) {
-      console.log(response); // 開発時必ずチェック
 
     if (response.error) {
       // alert は出さない　←ポイント
