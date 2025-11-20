@@ -178,6 +178,7 @@ GEM
       activesupport (>= 7.0.0)
     jmespath (1.6.2)
     json (2.16.0)
+    kgio (2.11.4)
     language_server-protocol (3.17.0.5)
     logger (1.7.0)
     loofah (2.24.1)
@@ -283,6 +284,7 @@ GEM
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
+    raindrops (0.20.1)
     rake (13.3.1)
     rdoc (6.15.1)
       erb
@@ -366,6 +368,9 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
+    unicorn (6.1.0)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -412,6 +417,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  unicorn (= 6.1.0)
   web-console
 
 RUBY VERSION
