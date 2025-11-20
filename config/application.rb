@@ -1,7 +1,9 @@
 require_relative "boot"
 
-require "rails/all"
 require "cgi"
+CGI.accept_charset = "UTF-8" 
+
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
