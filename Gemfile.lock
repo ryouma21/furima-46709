@@ -86,8 +86,8 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1184.0)
-    aws-sdk-core (3.237.0)
+    aws-partitions (1.1185.0)
+    aws-sdk-core (3.238.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -98,7 +98,7 @@ GEM
     aws-sdk-kms (1.117.0)
       aws-sdk-core (~> 3, >= 3.234.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.203.1)
+    aws-sdk-s3 (1.204.0)
       aws-sdk-core (~> 3, >= 3.234.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -109,7 +109,7 @@ GEM
     benchmark (0.5.0)
     bigdecimal (3.3.1)
     bindex (0.8.1)
-    bootsnap (1.18.6)
+    bootsnap (1.19.0)
       msgpack (~> 1.2)
     builder (3.3.0)
     capybara (3.40.0)
@@ -139,7 +139,7 @@ GEM
     diff-lcs (1.6.2)
     domain_name (0.6.20240107)
     drb (2.2.3)
-    erb (5.1.3)
+    erb (6.0.0)
     erubi (1.13.1)
     factory_bot (6.5.6)
       activesupport (>= 6.1.0)
@@ -200,7 +200,7 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (5.26.1)
+    minitest (5.26.2)
     msgpack (1.8.0)
     multi_json (1.17.0)
     mutex_m (0.3.0)
@@ -227,7 +227,6 @@ GEM
     payjp (1.1.7)
       base64
       rest-client (~> 2.0)
-    pg (1.6.2-x86_64-linux)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -291,7 +290,7 @@ GEM
       psych (>= 4.0.0)
       tsort
     regexp_parser (2.11.3)
-    reline (0.6.2)
+    reline (0.6.3)
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
@@ -356,7 +355,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.7)
+    stringio (3.1.8)
     thor (1.4.0)
     timeout (0.4.4)
     tsort (0.2.0)
@@ -406,7 +405,6 @@ DEPENDENCIES
   mini_magick
   mysql2 (~> 0.5)
   payjp
-  pg
   pry-rails
   puma (>= 5.0)
   rails (~> 7.1.0)
