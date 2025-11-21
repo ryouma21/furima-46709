@@ -91,3 +91,4 @@ gem 'image_processing', '~> 1.2'
 gem 'gon'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
+gem "nokogiri",  force_ruby_platform: true
