@@ -31,4 +31,8 @@ namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
   end
+
+  set :bundle_path, 'shared/bundle'
+  set :bundle_flags, '--deployment'
+  set :bundle_without, %w{development test}.join(' ')
 end
