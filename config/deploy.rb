@@ -36,4 +36,6 @@ namespace :deploy do
   set :bundle_flags, '--deployment'
   set :bundle_without, %w{development test}.join(' ')
   set :deploy_to, '/var/www/furima-46709'
+  set :bundle_path, 'shared/bundle'
+  set :bundle_flags, '--deployment'
 end
