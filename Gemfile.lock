@@ -84,6 +84,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    airbrussh (1.5.3)
+      sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.3)
     aws-eventstream (1.4.0)
     aws-partitions (1.1185.0)
@@ -112,6 +114,21 @@ GEM
     bootsnap (1.19.0)
       msgpack (~> 1.2)
     builder (3.3.0)
+    capistrano (3.19.2)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (2.1.1)
+      capistrano (~> 3.1)
+    capistrano-rails (1.7.0)
+      capistrano (~> 3.1)
+      capistrano-bundler (>= 1.1, < 3)
+    capistrano-rbenv (2.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano3-unicorn (0.2.1)
+      capistrano (~> 3.1, >= 3.1.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -213,13 +230,19 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
+    net-scp (4.1.0)
+      net-ssh (>= 2.6.5, < 8.0.0)
+    net-sftp (4.0.0)
+      net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.1)
       net-protocol
+    net-ssh (7.3.0)
     netrc (0.11.0)
     nio4r (2.7.5)
     nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    ostruct (0.6.3)
     parallel (1.27.0)
     parser (3.3.10.0)
       ast (~> 2.4.1)
@@ -353,6 +376,13 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
+    sshkit (1.24.0)
+      base64
+      logger
+      net-scp (>= 1.1.2)
+      net-sftp (>= 2.1.2)
+      net-ssh (>= 2.8.0)
+      ostruct
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.8)
@@ -393,6 +423,11 @@ DEPENDENCIES
   active_hash
   aws-sdk-s3
   bootsnap
+  capistrano
+  capistrano-bundler
+  capistrano-rails
+  capistrano-rbenv
+  capistrano3-unicorn
   capybara
   cgi
   debug
